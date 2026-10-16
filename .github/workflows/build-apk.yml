@@ -25,6 +25,10 @@ jobs:
           unzip -q FeatherRec-Android-Source.zip -d source
           chmod +x source/FeatherRec/gradlew
 
+      - name: Fix Kotlin source
+        run: |
+          sed -i '/fillViewport/d' source/FeatherRec/app/src/main/java/com/meadow/featherrec/MainActivity.kt
+
       - name: Build APK
         working-directory: source/FeatherRec
         run: ./gradlew --no-daemon assembleDebug
